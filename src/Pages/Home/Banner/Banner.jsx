@@ -23,13 +23,13 @@ const Banner = () => {
                 className="max-w-xs md:max-w-sm lg:max-w-md"
               />
               <div>
-                <h1 className="text-3xl md:text-5xl font-bold uppercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-pink-500">
+                <h1 className="text-3xl md:text-5xl font-bold uppercase gradient-text">
                   New Arrivals only
                 </h1>
-                <h2 className="py-4 md:py-8 text-4xl md:text-7xl font-medium lowercase text-transparent bg-clip-text bg-gradient-to-r from-cyan-500 to-pink-500">
+                <h2 className="py-4 md:py-8 text-4xl md:text-7xl font-medium lowercase gradient-text">
                   New Collection <br /> For Everyone
                 </h2>
-                <button className="btn btn-primary capitalize text-black bg-gradient-to-r from-red-500 to-yellow-500">
+                <button className="btn btn-primary capitalize gradient-btn">
                   Latest Collection <FaArrowRight />
                 </button>
               </div>
