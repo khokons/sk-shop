@@ -9,8 +9,10 @@ import {
 import Root from './Root/Root.jsx';
 import ErrorPage from './ErrorPage.jsx';
 import Home from './Pages/Home/Home/Home.jsx';
-import Men from './Pages/ShopCategory/Men/Men.jsx';
-
+import ShopCategory from './Pages/ShopCategory/ShopCategory.jsx';
+import men_banner from './assets/banner_mens.png';
+import women_banner from './assets/banner_women.png';
+import kid_banner from './assets/banner_kids.png';
 
 const router = createBrowserRouter([
   {
@@ -23,9 +25,18 @@ const router = createBrowserRouter([
         element: <Home></Home>
       },
       {
-        path: '/men',
-        element: <Men></Men>
-      }
+        path: '/mens',
+        element: <ShopCategory banner={men_banner} category="men" />,
+      },
+      {
+        path: '/womens',
+        element: <ShopCategory banner={women_banner} category="women" />,
+      },
+      {
+        path: '/kids',
+        element: <ShopCategory banner={kid_banner} category="kid" />,
+      },
+
 
     ]
   },
