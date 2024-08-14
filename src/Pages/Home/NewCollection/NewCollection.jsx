@@ -15,7 +15,7 @@ const NewCollection = () => {
         <div className='my-12'>
         <div className="pb-12 flex flex-col items-center relative">
     <div className="relative inline-block">
-      <h2 className="text-center text-orange-300 inline-block text-2xl md:text-3xl lg:text-5xl font-poppins font-semibold uppercase text-shadow">New Collections</h2>
+      <h2 className="text-center gradient-text inline-block text-2xl md:text-3xl lg:text-5xl font-poppins font-semibold uppercase text-shadow">New Collections</h2>
       <hr className="h-[6px] rounded-lg gradient-bg text-center w-full absolute bottom-[-10px]" />
     </div>
   </div>

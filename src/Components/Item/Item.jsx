@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Item = (props) => {
   // <Link to={`/product/${props.id}`}><img src={props.image} onClick={window.scrollTo(0,0)} alt="" /></Link>
 
@@ -12,11 +14,14 @@ const Item = (props) => {
           <p>${props.new_price}</p>
           <p>${props.old_price}</p>
         </div>
-
+      
         <div className="card-actions mt-4">
-          <button className="btn btn-primary gradient-btn">
+          <Link to={`/product/${props.id}`}> 
+          <button onClick={window.scrollTo(0,0)} className="btn btn-primary gradient-btn">
             Product Details
           </button>
+          </Link>
+         
         </div>
       </div>
     </div>
