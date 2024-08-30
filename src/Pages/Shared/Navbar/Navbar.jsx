@@ -1,13 +1,20 @@
 import './Navbar.css';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import { IoMdCart } from "react-icons/io";
+import { ImCross } from "react-icons/im";
 import { AuthContext } from '../../../Components/Providers/AuthProvider';
 
+
 const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { user, logOut } = useContext(AuthContext);
   const location = useLocation();
+
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
+  };
 
   const handleLogOut = () => {
     logOut()
@@ -32,23 +39,26 @@ const Navbar = () => {
     <nav className="navbar bg-base-100 relative">
       <div className="navbar-start">
         <div className="dropdown">
-          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor">
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M4 6h16M4 12h8m-8 6h16" />
-            </svg>
+          <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden" onClick={toggleMenu}>
+            {
+              isMenuOpen ? <ImCross className="h-5 w-5" /> : 
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="h-5 w-5"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor">
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth="2"
+                  d="M4 6h16M4 12h8m-8 6h16" />
+              </svg>
+            }
           </div>
           <ul
             tabIndex={0}
-            className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[2] mt-3 w-52 p-2 shadow">
+            className={`menu menu-sm dropdown-content bg-base-100 rounded-box z-[2] mt-3 w-52 p-2 shadow ${isMenuOpen ? 'block' : 'hidden'}`}>
             {routes.map((route, index) => (
               <li key={index}><Link to={route.path}>{route.name}</Link></li>
             ))}
