@@ -14,7 +14,7 @@ const Product = () => {
     return (
         <div>
             <Breadcrum product={product}></Breadcrum>
-            <ProductDisplay product={product}></ProductDisplay>
+            <ProductDisplay product={product} idInt={idInt}></ProductDisplay>
             <DescriptionBox></DescriptionBox>
             <RelatedProducts></RelatedProducts>
         </div>

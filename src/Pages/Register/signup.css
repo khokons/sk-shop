@@ -1,0 +1,37 @@
+
+.inputShadho {
+    background-color: #1b1f23; /* Matching the background color */
+    box-shadow: inset 5px 5px 5px #171a1d, inset -5px -5px 5px #1f2429; 
+    color: white; /* Optional: ensures text is visible on dark background */
+  }
+
+  /* Scroll Bar Color change */
+
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1b1f23;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #C68B59;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #A57545;
+}
+
+::-webkit-scrollbar-corner {
+  background: #1b1f23;
+}
+
+* {
+  scrollbar-color: #C68B59 #1b1f23;
+  scrollbar-width: thin;
+}
+/* ---------- */

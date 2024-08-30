@@ -1,19 +1,35 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import './Navbar.css';
+import React, { useContext } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import logo from '../../../assets/logo.png';
 import { IoMdCart } from "react-icons/io";
+import { AuthContext } from '../../../Components/Providers/AuthProvider';
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const location = useLocation();
 
-  const navLink = <>
-    <li className='uppercase'><Link to='/'>Shop</Link></li>
-    <li className='uppercase'><Link to='/mens'>Men</Link></li>
-    <li className='uppercase'><Link to='/womens'>Women</Link></li>
-    <li className='uppercase'><Link to='/kids'>Kids</Link></li>
-  </>
+  const handleLogOut = () => {
+    logOut()
+      .then(() => {
+        // handle logout success
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  };
+
+  const routes = [
+    { path: '/', name: 'Shop', width: 70, left: 0 },
+    { path: '/mens', name: 'Men', width: 70, left: 90 },
+    { path: '/womens', name: 'Women', width: 80, left: 188 },
+    { path: '/kids', name: 'Kids', width: 70, left: 294 },
+  ];
+
+  const activeRoute = routes.find(route => route.path === location.pathname) || routes[0];
 
   return (
-    <div className="navbar bg-base-100">
+    <nav className="navbar bg-base-100 relative">
       <div className="navbar-start">
         <div className="dropdown">
           <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
@@ -33,7 +49,9 @@ const Navbar = () => {
           <ul
             tabIndex={0}
             className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[2] mt-3 w-52 p-2 shadow">
-            {navLink}
+            {routes.map((route, index) => (
+              <li key={index}><Link to={route.path}>{route.name}</Link></li>
+            ))}
           </ul>
         </div>
         <div className='flex justify-center items-center gap-2'>
@@ -43,35 +61,42 @@ const Navbar = () => {
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="flex flex-row gap-6">
-          {navLink}
-          {/* <hr className='border-none w-[40px] h-[3px] bg-red-500 rounded-xl absolute bottom-0 left-0' /> */}
+          {routes.map((route, index) => (
+            <li key={index} className="relative">
+              <Link to={route.path} className='hovered-link'>{route.name}</Link>
+            </li>
+          ))}
+          <div
+            className="animation"
+            style={{ width: `${activeRoute.width}px`, left: `${activeRoute.left}px` }}
+          ></div>
         </ul>
       </div>
-   
 
       <div className="navbar-end gap-4">
-        <Link>
-        <button className='py-2 px-4 hidden lg:flex outline-none cursor-pointer rounded-xl border-2 uppercase'>Login</button>
-        </Link>
+        {user ? (
+          <button onClick={handleLogOut} className='py-2 px-4 hidden lg:flex outline-none cursor-pointer rounded-xl border-2 uppercase text-yellow-400'>Logout</button>
+        ) : (
+          <Link to='/login'>
+            <button className='py-2 px-4 hidden lg:flex outline-none cursor-pointer rounded-xl border-2 uppercase text-yellow-400'>Login</button>
+          </Link>
+        )}
+
         <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
           <div className="w-10 rounded-full">
-            <img
-              alt="Profile"
-              src="https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp" />
+            {user && <img src={user.photoURL} alt="" />}
           </div>
         </div>
-        <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+        <div tabIndex={0} role="button" className="btn btn-warning btn-circle">
           <div className="indicator">
-            <Link to='/cart'>
-            <IoMdCart className='h-5 w-5' />
-            <span className="badge badge-sm indicator-item">0</span>
+            <Link to='/carts'>
+              <IoMdCart className='h-5 w-5' />
+              <span className="badge badge-sm indicator-item">0</span>
             </Link>
-          
-            
           </div>
         </div>
       </div>
-    </div>
+    </nav>
   );
 };
 

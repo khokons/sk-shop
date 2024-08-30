@@ -1,9 +1,36 @@
-import React from "react";
 import star_icon from "../../../assets/star_icon.png";
 import star_dull_icon from "../../../assets/star_dull_icon.png";
+import Swal from "sweetalert2";
 
 const ProductDisplay = (props) => {
   const { product } = props;
+
+  const handleAddToCart = () =>{
+
+    const addToCarts = [];
+    const cartItems = JSON.parse(localStorage.getItem('favorites'));
+    if(!cartItems){
+        addToCarts.push(product)
+        localStorage.setItem('favorites',JSON.stringify(addToCarts))
+        Swal.fire("Carts Added Successful!", "You clicked the button!", "success"); 
+    }
+    else{
+
+      const isExit = cartItems.find(cart => cart.id == product.id)
+
+      if(!isExit){
+        addToCarts.push(...cartItems,product)
+        localStorage.setItem('favorites', JSON.stringify(addToCarts))
+        Swal.fire("Carts Added Successful!", "You clicked the button!", "success"); 
+      }
+
+      else{
+        Swal.fire("Sorry Already added this Product", "You clicked the button!", "Failed!!"); 
+      }
+
+    }
+}
+
 
   return (
     <div className="flex flex-col lg:flex-row my-12">
@@ -59,7 +86,7 @@ const ProductDisplay = (props) => {
           </div>
         </div>
 
-        <button className="px-5 py-2 md:px-10 md:py-4 lg:px-10 lg:py-5 w-full md:w-48 text-base font-semibold mb-10 border-none outline-none cursor-pointer gradient-bg text-black">
+        <button onClick={handleAddToCart} className="px-5 py-2 md:px-10 md:py-4 lg:px-10 lg:py-5 w-full md:w-48 text-base font-semibold mb-10 border-none outline-none cursor-pointer gradient-bg text-black">
           ADD TO CART
         </button>
         <p className="text-sm md:text-base lg:text-xl gradient-text-2 mt-4">

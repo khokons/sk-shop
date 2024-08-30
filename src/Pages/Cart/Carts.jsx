@@ -3,7 +3,7 @@ import CartItems from './CartItems';
 
 const Carts = () => {
     return (
-        <div>
+        <div className='mt-10'>
             <CartItems></CartItems>
         </div>
     );

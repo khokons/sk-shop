@@ -1,0 +1,57 @@
+nav {
+  position: relative;
+}
+
+nav ul {
+  position: relative;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+}
+
+nav .hovered-link {
+  position: relative;
+  z-index: 1;
+  display: inline-block;
+  padding: 10px 15px;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: color 0.3s ease;
+  color: yellow;
+}
+
+
+/* .animation ডিভের ডিফল্ট অবস্থান ও সাইজ */
+nav .animation {
+  position: absolute;
+  height: 100%;
+  top: 0;
+  left: 0; /* প্রথম লিঙ্কের অবস্থানে রাখুন */
+  z-index: 0;
+  background-image: linear-gradient(to right, #FC466B, #3F5EFB);
+  border-radius: 8px;
+  width: 70px; /* প্রথম লিঙ্কের প্রস্থ */
+  transition: all 0.5s ease 0s;
+}
+
+/* Hover অবস্থায় .animation ডিভের অবস্থান ও সাইজ পরিবর্তন */
+nav li:nth-child(1):hover~.animation {
+  width: 70px;
+  left: 0;
+}
+
+nav li:nth-child(2):hover~.animation {
+  width: 70px;
+  left: 90px;
+}
+
+nav li:nth-child(3):hover~.animation {
+  width: 80px;
+  left: 188px;
+}
+
+nav li:nth-child(4):hover~.animation {
+  width: 70px;
+  left: 294px;
+}
