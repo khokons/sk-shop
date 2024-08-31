@@ -5,7 +5,7 @@ const NewCollection = () => {
     const [newCollection, setNewCollection] = useState([]);
 
     useEffect(()=>{
-        fetch('/public/newCollection.json')
+        fetch('/newCollection.json')
         .then(res=> res.json())
         .then(data=> setNewCollection(data))
     },[])

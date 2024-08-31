@@ -6,7 +6,7 @@ const ShopCategory = (props) => {
   const [allProduct, setAllProduct] = useState([]);
 
   useEffect(() => {
-    fetch("/public/allData.json")
+    fetch('/allData.json')
       .then((res) => res.json())
       .then((data) => setAllProduct(data));
   }, []);

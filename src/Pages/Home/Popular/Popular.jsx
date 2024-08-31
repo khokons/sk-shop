@@ -6,7 +6,7 @@ const Popular = () => {
     const [popular, setPopular] = useState([]);
 
     useEffect(()=>{
-        fetch('/public/data.json')
+        fetch('/data.json')
         .then(res=> res.json())
         .then(data=> setPopular(data))
     },[])
