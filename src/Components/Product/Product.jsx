@@ -8,6 +8,7 @@ const Product = () => {
     const allData = useLoaderData();
     const {productId} = useParams();
     const idInt = parseInt(productId);
+    
 
     const product = allData.find((e)=> e.id===idInt);
 

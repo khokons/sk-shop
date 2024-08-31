@@ -38,18 +38,19 @@ const router = createBrowserRouter([
         path: "/kids",
         element: <ShopCategory banner={kid_banner} category="kid" />
       },
-      {
-        path: "/product",
-        element: <Product></Product>
-      },
+      // {
+      //   path: "/product",
+      //   element: <Product></Product>,
+      //   loader: () => fetch('/allData.json')
+      // },
       {
         path: "/product/:productId",
         element: <PrivateRoute><Product></Product></PrivateRoute>,
-        loader: () => fetch("/public/allData.json")
+        loader: () => fetch('/allData.json')
       },
       {
         path: "/carts",
-        element: <PrivateRoute> <Carts></Carts></PrivateRoute>
+        element: <PrivateRoute><Carts></Carts></PrivateRoute>
       },
       {
         path: "/login",
